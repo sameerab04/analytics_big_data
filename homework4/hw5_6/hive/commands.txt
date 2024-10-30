@@ -1,0 +1,35 @@
+CREATE DATABASE IF NOT EXISTS omo6093_movie_recs;
+
+USE omo6093_movie_recs;
+
+CREATE TABLE IF NOT EXISTS movie_ratings (
+    userId INT, 
+    movieId INT, 
+    rating FLOAT, 
+    `timestamp` BIGINT
+    ) 
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ",";
+
+LOAD DATA LOCAL INPATH '/home/public/movies/ratings.csv' INTO TABLE movie_ratings;
+
+CREATE TABLE film_pairs AS 
+SELECT a.movieId m1, b.movieId m2, count(*) as pair_cnt 
+FROM movie_ratings a 
+JOIN movie_ratings b 
+ON (a.userId = b.userId and a.movieId < b.movieId) 
+WHERE a.rating > 3 and b.rating > 3 group by a.movieId, b.movieId;
+
+
+CREATE TABLE movie_recs AS 
+SELECT m1 AS recommended_movie, SUM(pair_cnt) AS rec_score
+FROM film_pairs 
+WHERE m2 = 296 
+GROUP BY m1 ORDER BY rec_score DESC;
+
+
+INSERT OVERWRITE DIRECTORY '/user/omo6094/hive'
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY '\t'
+SELECT * FROM movie_recs 
+LIMIT 50;

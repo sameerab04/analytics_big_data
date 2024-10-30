@@ -1,37 +1,92 @@
-## Pseudocode for MapReduce Script
 
-### Function: `mapper(input_file)`
-- Initialize an empty list: `intermediate_data`
-- Open `input_file` for reading.
-- Read each line using CSV reader.
-- For each `row` in the file:
-  - Check if `row` has at least four columns.
-  - Extract the artist's name (third column) and duration (fourth column).
-  - Attempt to convert `duration` to float.
-    - If successful, append `(artist_name, duration)` to `intermediate_data`.
-    - If not, ignore the row (error in conversion).
-- Return `intermediate_data`.
+# MapReduce Script for Maximum Song Duration by Artist
 
-### Function: `shuffle_and_reduce(intermediate_data)`
-- Initialize a dictionary: `shuffled` to collect lists of durations by artist.
-- For each `(artist, duration)` pair in `intermediate_data`:
-  - Append `duration` to the list in `shuffled[artist]`.
-- Initialize a dictionary: `reduced_data` for final output.
-- For each `artist` in `shuffled`:
-  - Calculate the maximum duration from `shuffled[artist]`.
-  - Assign the max duration to `reduced_data[artist]`.
-- Return `reduced_data`.
+## Overview
+
+This Python script implements a MapReduce program that calculates the maximum song duration for each artist in a large dataset. The dataset is split into multiple CSV files, and the script uses Python's `multiprocessing` library to parallelize both the mapping and reducing phases for efficiency.
+
+## Usage
+
+```bash
+python3 songs.py <input_directory> <num_reducers>
+```
+
+- `<input_directory>`: Directory containing the input CSV files.
+- `<num_reducers>`: Number of processes to use in the reduce phase.
+
+The script will output results to `output.txt`.
+
+## File Structure and Data Format
+
+- Each CSV file in `<input_directory>` should have the following columns:
+  - Column 1: Song title (ignored in this script)
+  - Column 2: Unused column (ignored in this script)
+  - Column 3: Artist name
+  - Column 4: Song duration (float)
+
+- The output file `output.txt` will contain:
+  ```
+  artist_name  max_duration
+  ```
+
+## Pseudocode
+
+### `mapper(input_file)`
+
+1. Initialize an empty list: `intermediate_data`.
+2. Open `input_file` for reading.
+3. Read each line using CSV reader.
+4. For each row in the file:
+   - Check if the row has at least four columns.
+   - Extract the artist's name (third column) and duration (fourth column).
+   - Attempt to convert duration to float.
+   - If successful, append `(artist_name, duration)` to `intermediate_data`.
+   - If unsuccessful (error in conversion), ignore the row.
+5. Return `intermediate_data`.
+
+### `shuffle_and_reduce(intermediate_data, num_reducers)`
+
+1. Initialize a dictionary: `shuffled` to collect lists of durations by artist.
+2. For each `(artist, duration)` pair in `intermediate_data`:
+   - Append `duration` to the list in `shuffled[artist]`.
+3. Initialize a dictionary: `reduced_data` for the final output.
+4. For each artist in `shuffled`:
+   - Calculate the maximum duration from `shuffled[artist]`.
+   - Assign the max duration to `reduced_data[artist]`.
+5. Return `reduced_data`.
 
 ### Main Execution
-- If script is executed with incorrect arguments:
-  - Display usage message and exit.
-- Extract `input_dir` and `num_reducers` from command-line arguments.
-- List all CSV files in `input_dir`.
-- Determine the number of mappers as the length of the list of CSV files.
-- Create a pool of workers (`Pool`) equal to the number of mappers.
-- Map `mapper` function across all input files using the pool.
-- Combine results from all mappers into a single list: `combined_intermediate_data`.
-- Apply `shuffle_and_reduce` to `combined_intermediate_data`.
-- Sort the results from the reduce phase by artist name.
-- Open `final_output.txt` for writing.
-- Write each artist and their maximum duration to the file.
+
+1. If the script is executed with incorrect arguments:
+   - Display a usage message and exit.
+2. Extract `input_dir` and `num_reducers` from the command-line arguments.
+3. List all CSV files in `input_dir`.
+4. Determine the number of mappers as the length of the list of CSV files.
+5. Create a pool of workers (`Pool`) equal to the number of mappers.
+6. Map the `mapper` function across all input files using the pool.
+7. Combine results from all mappers into a single list: `combined_intermediate_data`.
+8. Apply `shuffle_and_reduce` to `combined_intermediate_data`.
+9. Sort the results from the reduce phase by artist name.
+10. Open `output.txt` for writing.
+11. Write each artist and their maximum duration to the file.
+
+## Example Command
+
+```bash
+python3 songs.py /path/to/input_directory 5
+```
+
+This command will:
+- Use `/path/to/input_directory` as the input directory containing CSV files.
+- Run the reduce phase using 5 parallel processes.
+
+## Requirements
+
+- Python 3.x
+- Multiprocessing library (standard in Python 3)
+
+## Notes
+
+- Ensure that `output.txt` does not already exist, as it will be overwritten.
+- The program is designed to handle errors in the duration column, where non-numeric values are ignored.
+- Sorting of results is based on the artist name for a consistent output order.

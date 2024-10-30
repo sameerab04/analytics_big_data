@@ -5,30 +5,6 @@
 
 This Python script implements a MapReduce program that calculates the maximum song duration for each artist in a large dataset. The dataset is split into multiple CSV files, and the script uses Python's `multiprocessing` library to parallelize both the mapping and reducing phases for efficiency.
 
-## Usage
-
-```bash
-python3 songs.py <input_directory> <num_reducers>
-```
-
-- `<input_directory>`: Directory containing the input CSV files.
-- `<num_reducers>`: Number of processes to use in the reduce phase.
-
-The script will output results to `output.txt`.
-
-## File Structure and Data Format
-
-- Each CSV file in `<input_directory>` should have the following columns:
-  - Column 1: Song title (ignored in this script)
-  - Column 2: Unused column (ignored in this script)
-  - Column 3: Artist name
-  - Column 4: Song duration (float)
-
-- The output file `output.txt` will contain:
-  ```
-  artist_name  max_duration
-  ```
-
 ## Pseudocode
 
 ### `mapper(input_file)`
@@ -70,22 +46,6 @@ The script will output results to `output.txt`.
 10. Open `output.txt` for writing.
 11. Write each artist and their maximum duration to the file.
 
-## Example Command
-
-```bash
-python3 songs.py /path/to/input_directory 5
-```
-
-This command will:
-- Use `/path/to/input_directory` as the input directory containing CSV files.
-- Run the reduce phase using 5 parallel processes.
-
-## Requirements
-
-- Python 3.x
-- Multiprocessing library (standard in Python 3)
-
-## Notes
 
 - Ensure that `output.txt` does not already exist, as it will be overwritten.
 - The program is designed to handle errors in the duration column, where non-numeric values are ignored.

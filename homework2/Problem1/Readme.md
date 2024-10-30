@@ -16,7 +16,7 @@ These scripts are designed to be used in a Hadoop environment with Hadoop Stream
 
 ```bash
 hadoop jar /path/to/hadoop-streaming.jar \
-    -files mapper_gram.py,reducer_gram.py,sorter.py \
+    -files mapper1.py,reducer1.py,sorter.py \
     -input /path/to/input_data \
     -output /path/to/output_data \
     -mapper mapper1.py \

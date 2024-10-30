@@ -1,0 +1,4 @@
+Chat GPT prompt:
+Given these columns [...] provide me which columns are sensitive features. 
+
+Given this sensitive column provide me python code utilizing the fiarlearn package to assess the bias. Provide me both numerical and visual results. 

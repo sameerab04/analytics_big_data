@@ -1,0 +1,11 @@
+Top 10 pairs of beats with the highest correlation:
+Beats: 221 and 835, Correlation: 0.9997884613036996
+Beats: 1931 and 1933, Correlation: 0.999732040235062
+Beats: 822 and 1631, Correlation: 0.9996736925567129
+Beats: 1925 and 2221, Correlation: 0.9996594109926095
+Beats: 722 and 333, Correlation: 0.9996063762501728
+Beats: 1511 and 1125, Correlation: 0.9995486893138448
+Beats: 624 and 333, Correlation: 0.9994661514554977
+Beats: 732 and 823, Correlation: 0.9994613375805711
+Beats: 1512 and 1923, Correlation: 0.9994408382693578
+Beats: 2212 and 1712, Correlation: 0.9994091294008627

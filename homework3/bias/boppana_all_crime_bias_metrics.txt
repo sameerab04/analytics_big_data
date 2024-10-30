@@ -1,0 +1,12 @@
+Overall fairness metrics for all_crime:
+15.790613060755868
+
+Group metrics:
+med_income
+0    21.136240
+1    12.344394
+2     8.095901
+3    11.441898
+4     6.750218
+Name: mean_squared_error, dtype: float64
+

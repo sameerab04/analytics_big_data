@@ -1,0 +1,5 @@
+Community Area Level:
+p-value: 0.002912385408589375
+There is a significant difference in crime counts between Mayors Daley and Emanuel at the community area level.
+Daley's Term - Mean: 39394.15517241379, Standard Deviation: 65020.151918542935
+Emanuel's Term - Mean: 19927.543103448275, Standard Deviation: 24194.618659083822

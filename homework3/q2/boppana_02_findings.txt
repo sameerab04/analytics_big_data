@@ -1,0 +1,5 @@
+Top Crime Blocks: The top blocks for crime events over the last three years are high-traffic and commercial areas, indicating a correlation between dense population or business presence and higher crime rates.
+
+Highly Correlated Beats: Pairs of beats with extremely high correlation in crime events suggest shared socio-economic conditions or geographic proximity. Verifying adjacency through geographic mapping is necessary for these pairs.
+
+Crime Rate Differences by Mayoral Term: There is a statistically significant difference in crime counts between the terms of Mayor Daley and Mayor Emanuel, with Daley’s term showing higher crime rates. This disparity may be attributed to different policing strategies, socio-economic factors, and policy implementations during their respective administrations.

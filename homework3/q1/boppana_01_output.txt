@@ -1,0 +1,12 @@
+Month: 1, Average_Crime_Events:28404.2
+Month: 2, Average_Crime_Events:25014.85
+Month: 3, Average_Crime_Events:29715.8
+Month: 4, Average_Crime_Events:29541.4
+Month: 5, Average_Crime_Events:32995.74
+Month: 6, Average_Crime_Events:32839.53
+Month: 7, Average_Crime_Events:34506.05
+Month: 8, Average_Crime_Events:34159.16
+Month: 9, Average_Crime_Events:32008.89
+Month: 10, Average_Crime_Events:32353.89
+Month: 11, Average_Crime_Events:29134.89
+Month: 12, Average_Crime_Events:27658.47

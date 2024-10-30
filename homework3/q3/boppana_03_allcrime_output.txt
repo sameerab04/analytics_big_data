@@ -1,0 +1,15 @@
+Model: RF
+rmse: 4.17
+r2: 0.69
+mae: 2.78
+
+Model: GBT
+rmse: 4.03
+r2: 0.71
+mae: 2.68
+
+Model: LR
+rmse: 3.97
+r2: 0.72
+mae: 2.66
+
